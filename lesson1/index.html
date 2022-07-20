@@ -8,24 +8,22 @@
 </head>
 <body>
     <div id="haha"> hahahaha</div>
-
+    
     <button id="hehe" > magic </button>
     <button id="nono"> color </button>
     <button id="page">Change page</button>
-
-
+    
+    
     <h1>To-Do List</h1>
-
-    <form onsubmit="return addItem('list', this.inputItem)"> 
-    <input type="text" id="inputItem" placeholder="Enter a Task">
-    <input type="submit">
-
+    
+    <form onclick="return addItem('list', this.inputItem)"> 
+        <input type="text" id="inputItem" placeholder="Enter a Task">
+        <input type="button">
+        
     </form>
-
-    <ul id="list">
-        <!-- //create items in this list -->
-    </ul>
-
+    <div id="list"></div>
+    
+    <div id="nahnah"></div>
     <script>
         let print1 = document.getElementById('haha')
         let print2 = document.getElementById('hehe')
@@ -71,9 +69,33 @@
             return false; 
         }
 
-        function callD (){
-
+        function getData (key){
+            if (localStorage.getItem(key)){
+                return localStorage.getItem(key)
+            }
+            return undefined
         }
+
+        (function showData(){
+            
+
+            const listElement = document.getElementById("nahnah");
+            const listData = getData("coffee");
+            const data = JSON.parse(listData)
+            let html = ""
+            data?.forEach(item => {
+                html +=  `<div id=${item.id}>
+                    <h1>${item.title}</h1>
+                    <h4>Ingredients</h4>
+                    <p>${item.ingredients}</p>
+                    <h3>Description</h3>
+                    <p>${item.description}</p>
+                    <img style="width:70%;" src="${item.image}">
+                    </div><br>`
+            });
+            listElement.innerHTML = html
+        })()
+        
 
     </script>
 </body>

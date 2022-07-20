@@ -19,23 +19,14 @@
             const res = await fetch("https://api.sampleapis.com/coffee/hot")
             const data = await res.json();
             
-            el.innerHTML = data.map(item => `
-            <div id=${item.id}>
-                <h1>${item.title}</h1>
-                <h4>Ingredients</h4>
-                <p>${item.ingredients}</p>
-                <h3>Description</h3>
-                <p>${item.description}</p>
-                <img style="width:70%;" src="${item.image}">
-                 </div><br>`).join(' ');
-                 
+            localStorage.setItem('coffee', JSON.stringify(data))
+            console.log(data)
             
-        })()
-
-        function upData(){
-            let newWindow = window.open("",  )
-        }
+                
+            })()
+           
         
+       
     </script>
 </body>
 </html>
